@@ -164,13 +164,13 @@ Housing_HPI_Growth_12M
 
 동일 geography `g`에서 12개월 주택가격 변화율은 개념적으로 다음과 같이 정의한다.
 
-$$
+```math
 \mathrm{HPI\_Growth}_{g,t}^{12M}
 =
 \frac{\mathrm{HPI}_{g,t}}
 {\mathrm{HPI}_{g,t-12M}}
 -1
-$$
+```
 
 분기 자료에서는 동일 geography 내 **4-quarter lag**를 사용하여 계산하였다.
 
@@ -186,13 +186,13 @@ BLS_Unemployment_Rate_Change_12M_Final
 
 동일 geography `g`에서:
 
-$$
+```math
 \Delta UR_{g,t}^{12M}
 =
 UR_{g,t}
 -
 UR_{g,t-12M}
-$$
+```
 
 로 정의한다.
 
@@ -262,25 +262,25 @@ Ranking / SHAP / Macro Ablation / Risk Tiering
 
 관찰 기간은:
 
-$$
+```math
 m \in \{0,1,\ldots,23\}
-$$
+```
 
 이다.
 
 다음 사건 중 하나라도 관측되면:
 
-$$
+```math
 \mathrm{Target}_{24M}=1
-$$
+```
 
 로 정의한다.
 
 ### ① 90일 이상 연체
 
-$$
+```math
 DQ_m \ge 3
-$$
+```
 
 ### ② REO
 
@@ -294,7 +294,7 @@ Zero Balance Code ∈ {02, 03, 09}
 
 따라서 전체 target rule은 개념적으로:
 
-$$
+```math
 Y_i
 =
 \mathbb{I}
@@ -306,7 +306,7 @@ REO_{i,m}=1
 \;\lor\;
 ZB_{i,m}\in\{02,03,09\}
 \right)
-$$
+```
 
 로 표현할 수 있다.
 
@@ -494,7 +494,7 @@ Transform Only
 
 먼저 missing indicator를 생성하였다.
 
-$$
+```math
 \mathrm{DTI\_Missing}_i
 =
 \mathbb{I}
@@ -502,7 +502,7 @@ $$
 \mathrm{Original\_DTI}_i
 \text{ is missing}
 \right)
-$$
+```
 
 이후 Development/Train에서 계산한 median:
 
@@ -512,7 +512,7 @@ Original_DTI median = 35
 
 를 결측값에 적용하였다.
 
-$$
+```math
 \mathrm{Original\_DTI}_i^{*}
 =
 \begin{cases}
@@ -521,7 +521,7 @@ $$
 35,
 & \text{if missing}
 \end{cases}
-$$
+```
 
 따라서 모델은 다음 두 경우를 구분할 수 있다.
 
@@ -578,11 +578,11 @@ Category definition은 Train에서 고정하고, 이후 split에서 Train에 존
 
 각 ZIP3에 Census geographic reference의 대표 위도·경도를 연결하였다. [[7]](#ref-7)
 
-$$
+```math
 ZIP3_i
 \rightarrow
 (\phi_i,\lambda_i)
-$$
+```
 
 이는 개별 property의 실제 좌표가 아니라 **ZIP3-level representative coordinate**이다.
 
@@ -590,23 +590,23 @@ $$
 
 위도·경도를 radian으로 변환한 후 3차원 unit vector로 변환하였다.
 
-$$
+```math
 x_i=\cos(\phi_i)\cos(\lambda_i)
-$$
+```
 
-$$
+```math
 y_i=\cos(\phi_i)\sin(\lambda_i)
-$$
+```
 
-$$
+```math
 z_i=\sin(\phi_i)
-$$
+```
 
 따라서:
 
-$$
+```math
 \mathbf{g}_i=(x_i,y_i,z_i)
-$$
+```
 
 를 구성하였다.
 
@@ -624,14 +624,14 @@ KMeans(
 
 각 관측은:
 
-$$
+```math
 C_i
 =
 \underset{k\in\{1,\ldots,8\}}{\arg\min}
 \left\|
 \mathbf{g}_i-\boldsymbol{\mu}_k
 \right\|_2^2
-$$
+```
 
 에 따라 가장 가까운 centroid에 할당된다.
 
@@ -662,7 +662,7 @@ K-Means cluster ID 자체에는 의미가 없으므로 centroid와 포함 ZIP3 /
 
 MSA `g`, reference period `t`에 대해 A specification은 다음 macro vector를 사용한다.
 
-$$
+```math
 \mathbf{z}_{g,t}^{(A)}
 =
 \left[
@@ -672,7 +672,7 @@ UR_{g,t},
 \Delta Emp_{g,t}^{12M},
 \Delta UR_{g,t}^{12M}
 \right]
-$$
+```
 
 즉 다음 정보를 함께 사용한다.
 
@@ -690,7 +690,7 @@ B specification은 별도 후보로 검토하였으나, 최종 10F에서는 **A 
 
 각 macro feature는 Train에서 계산한 mean과 standard deviation을 이용하여 표준화하였다.
 
-$$
+```math
 z_{ij}^{std}
 =
 \frac{
@@ -698,7 +698,7 @@ z_{ij}-\mu_j^{Train}
 }{
 \sigma_j^{Train}
 }
-$$
+```
 
 Validation에는 동일한 Train statistics를 적용하였다.
 
@@ -706,9 +706,9 @@ Validation에는 동일한 Train statistics를 적용하였다.
 
 다음 후보를 비교하였다.
 
-$$
+```math
 K\in\{2,3,4,5,6\}
-$$
+```
 
 Train silhouette score를 기준으로 K를 선택하였으며, 동률일 경우 더 작은 K를 선택하였다.
 
@@ -721,7 +721,7 @@ Train silhouette score를 기준으로 K를 선택하였으며, 동률일 경우
 
 K-Means objective는:
 
-$$
+```math
 \min_{\{\boldsymbol{\mu}_k\}_{k=1}^{K}}
 \sum_{i=1}^{n}
 \min_{k\in\{1,\ldots,K\}}
@@ -730,7 +730,7 @@ $$
 -
 \boldsymbol{\mu}_k
 \right\|_2^2
-$$
+```
 
 이다.
 
@@ -763,7 +763,7 @@ Direct MSA cluster가 없는 경우 **Train의 direct MSA cluster만을 이용�
 
 개념적으로:
 
-$$
+```math
 \hat C_i
 =
 \begin{cases}
@@ -774,7 +774,7 @@ $$
 \operatorname{Mode}(C\mid \mathrm{Train}),
 & \text{otherwise}
 \end{cases}
-$$
+```
 
 Validation target은 이 mapping을 구축하는 데 사용하지 않았다.
 
@@ -1009,13 +1009,13 @@ F1은 Train **0.0650**에서 CV **0.0576**으로 감소하였고, Internal Test�
 
 Recall은
 
-$$
+```math
 0.5170
 \rightarrow
 0.4531
 \rightarrow
 0.4728
-$$
+```
 
 로 Train보다 CV와 Test에서 낮게 나타났다.
 
@@ -1033,11 +1033,11 @@ $$
 
 PR-AUC는 다음과 같이 나타났다.
 
-$$
+```math
 \text{Train } 0.1009
 \rightarrow
 \text{CV } 0.0374
-$$
+```
 
 Internal Test에서는 **0.0477**이었다.
 
@@ -1165,21 +1165,21 @@ Cumulative Gains를 구체적인 수치로 확인하기 위해 각 cohort에서 
 
 **Capture Rate**는 전체 실제 사건 중 선택된 고위험 구간에 포함된 사건의 비율이다.
 
-$$
+```math
 \mathrm{Capture@k}
 =
 \frac{\text{Top-k 구간의 실제 사건 수}}
 {\text{전체 실제 사건 수}}
-$$
+```
 
 **Lift**는 선택된 고위험 구간의 사건율이 전체 cohort 사건율보다 몇 배 높은지를 나타낸다.
 
-$$
+```math
 \mathrm{Lift@k}
 =
 \frac{\text{Top-k 구간의 사건율}}
 {\text{전체 cohort 사건율}}
-$$
+```
 
 주요 결과는 다음과 같다.
 
@@ -1204,13 +1204,13 @@ Chronological Validation 전체에서는 49,038건 중 **380건**의 실제 `Tar
 
 모델 점수가 가장 높은 상위 5%의 대출은 총 **2,452건**이다. 이 구간에는 전체 380건의 실제 사건 중 **114건**이 포함되어 있었다.
 
-$$
+```math
 \mathrm{Capture@5\%}
 =
 \frac{114}{380}
 =
 30.0\%
-$$
+```
 
 즉, 전체 Validation 대출의 **5%를 우선적으로 검토하여 실제 사건의 30.0%를 포착**하였다.
 
@@ -1226,21 +1226,21 @@ $$
 
 위험점수 상위 20%인 **9,808건**까지 검토하면 실제 사건 **254건**이 포함된다.
 
-$$
+```math
 \mathrm{Capture@20\%}
 =
 \frac{254}{380}
 =
 66.84\%
-$$
+```
 
 즉,
 
-$$
+```math
 20\%\ \text{of loans}
 \rightarrow
 66.84\%\ \text{of observed events}
-$$
+```
 
 의 집중 효과가 관찰되었다.
 
@@ -1271,7 +1271,7 @@ Top-K 분석을 보다 운영적으로 해석하기 위해 각 평가 cohort 내
 
 Chronological Validation에서는 다음과 같은 위험 구배가 관찰되었다.
 
-$$
+```math
 4.649\%
 \rightarrow
 1.903\%
@@ -1279,7 +1279,7 @@ $$
 0.653\%
 \rightarrow
 0.122\%
-$$
+```
 
 Very High 구간의 2,452건에서는 실제 사건 114건이 발생하여 사건율이 **4.649%**였던 반면, Low 구간의 24,519건에서는 30건의 사건이 발생하여 사건율이 **0.122%**였다.
 
@@ -1433,7 +1433,7 @@ Chronological Validation에서는 다음 결과가 확인되었다.
 
 또한 Validation 내부의 위험구간별 실제 사건율은
 
-$$
+```math
 \text{Very High } 4.649\%
 >
 \text{High } 1.903\%
@@ -1441,7 +1441,7 @@ $$
 \text{Medium } 0.653\%
 >
 \text{Low } 0.122\%
-$$
+```
 
 로 명확한 위험 구배를 나타냈다.
 
@@ -2123,11 +2123,11 @@ Regular-PIT는 First Payment Date 이전의 최근 완성 quarter/month를 사�
 
 ### 18.4 Regular-PIT와 Strict-PIT의 계산 정의
 
-대출 \(i\)의 기준일은 `First_Payment_Date`로 정의한다.
+대출 $i$의 기준일은 `First_Payment_Date`로 정의한다.
 
-$$
+```math
 t_i = \mathrm{First\ Payment\ Date}_i
-$$
+```
 
 Regular-PIT와 Strict-PIT의 차이는 단순히 미래 observation의 사용 여부가 아니라,
 **reference period의 종료와 실제 정보 이용 가능 시점(publication lag)을
@@ -2141,17 +2141,17 @@ Regular-PIT는 `First_Payment_Date` 이전의 가장 최근 완료 period를 사
 
 FHFA의 경우:
 
-$$
+```math
 Q_i^{Reg}=Q(t_i)-1
-$$
+```
 
 즉, First Payment Date가 속한 quarter의 직전 완료 quarter를 사용한다.
 
 BLS의 경우:
 
-$$
+```math
 M_i^{Reg}=M(t_i)-1
-$$
+```
 
 즉, First Payment Date가 속한 month의 직전 month를 사용한다.
 
@@ -2159,19 +2159,19 @@ $$
 
 FHFA HPI growth:
 
-$$
+```math
 G_{HPI,12M}(g,q)
 =
 \frac{HPI_{g,q}}{HPI_{g,q-4}}-1
-$$
+```
 
 BLS unemployment-rate change:
 
-$$
+```math
 \Delta UR_{12M}(g,m)
 =
 UR_{g,m}-UR_{g,m-12}
-$$
+```
 
 따라서 이 변수들은 미래 12개월의 변화가 아니라,
 **reference period까지 이미 관측된 과거 12개월의 변화**를 나타낸다.
@@ -2188,19 +2188,19 @@ Strict-PIT는 Regular-PIT reference period에서 시작한 뒤,
 보수적으로 설정한 publication-availability rule을 만족할 때까지
 reference period를 과거 방향으로 이동한다.
 
-FHFA quarter \(q\)의 assumed availability date는:
+FHFA quarter $q$의 assumed availability date는:
 
-$$
+```math
 A_{FHFA}(q)
 =
 EndQuarter(q)+2\text{ months}+1\text{ day}
-$$
+```
 
 로 정의한다.
 
 따라서 Strict FHFA reference quarter는:
 
-$$
+```math
 Q_i^{Strict}
 =
 \max
@@ -2208,23 +2208,23 @@ Q_i^{Strict}
 q \le Q_i^{Reg} :
 A_{FHFA}(q)<t_i
 \right\}
-$$
+```
 
 이다.
 
-BLS month \(m\)의 assumed availability date는:
+BLS month $m$의 assumed availability date는:
 
-$$
+```math
 A_{BLS}(m)
 =
 EndMonth(m)+45\text{ days}
-$$
+```
 
 로 정의한다.
 
 따라서 Strict BLS reference month는:
 
-$$
+```math
 M_i^{Strict}
 =
 \max
@@ -2232,7 +2232,7 @@ M_i^{Strict}
 m \le M_i^{Reg} :
 A_{BLS}(m)<t_i
 \right\}
-$$
+```
 
 이다.
 

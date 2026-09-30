@@ -1,0 +1,3 @@
+Cohort,N,Events,Event_Rate,First_Payment_Min,First_Payment_Max,Loan_ID_Unique
+Train cohort,160003,919,0.00574364230670675,2014-01-01,2017-03-01,True
+Chronological Validation,49038,380,0.007749092540478813,2017-04-01,2018-03-01,True

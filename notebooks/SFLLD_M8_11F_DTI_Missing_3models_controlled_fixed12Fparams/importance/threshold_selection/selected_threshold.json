@@ -1,0 +1,24 @@
+{
+  "model_path": "C:\\Users\\itwill\\Desktop\\study\\\ucf54\ub529\uacf5\ubd80\\\ud504\ub85c\uc81d\ud2b8\\The Single Family Loan-Level Dataset (SFLLD) - 6\\notebooks\\SFLLD_M8_11F_DTI_Missing_3models_controlled_fixed12Fparams\\importance\\catboost_no_harp_10F_fixed.pkl",
+  "selection_dataset": "5-fold out-of-fold probabilities from training split",
+  "primary_metric": "F1",
+  "selected_threshold": 0.039,
+  "previous_threshold": 0.015,
+  "threshold_min": 0.001,
+  "threshold_max": 0.1,
+  "threshold_step": 0.0005,
+  "random_state": 3217,
+  "test_size": 0.2,
+  "features": [
+    "FICO_Score",
+    "Original_DTI",
+    "Original_CLTV",
+    "Original_Interest_Rate",
+    "Number_of_Borrowers",
+    "Housing_HPI_Growth_12M",
+    "BLS_Unemployment_Rate_Change_12M_Final",
+    "DTI_Missing",
+    "Spatial_Cluster_Region",
+    "Regular_MSA_Macro_Cluster_A"
+  ]
+}

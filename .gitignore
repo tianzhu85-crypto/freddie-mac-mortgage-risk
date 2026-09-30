@@ -1,0 +1,40 @@
+# Raw and processed data
+data/
+*.parquet
+*.zip
+
+# Trained models / serialized artifacts
+*.joblib
+*.pkl
+*.cbm
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+~$*
+
+# CatBoost training logs
+catboost_info/
+**/catboost_info/
+
+# Generated loan-level prediction outputs
+**/train_loan_level_*.csv
+**/validation_loan_level_*.csv

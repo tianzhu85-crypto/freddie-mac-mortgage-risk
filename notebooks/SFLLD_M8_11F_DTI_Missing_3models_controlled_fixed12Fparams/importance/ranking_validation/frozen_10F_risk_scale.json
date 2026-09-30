@@ -1,0 +1,9 @@
+{
+  "model_file": "catboost_no_harp_10F_fixed.pkl",
+  "reference": "Train cohort internal 80% fit subset",
+  "reference_loans": 128002,
+  "very_high_min_score": 0.02103580814305749,
+  "high_min_score": 0.007711526703438756,
+  "medium_min_score": 0.0026659397474547855,
+  "score_interpretation": "Model score; not a verified individual probability"
+}

@@ -1,0 +1,43 @@
+{
+  "model_path": "C:\\Users\\itwill\\Desktop\\study\\코딩공부\\프로젝트\\The Single Family Loan-Level Dataset (SFLLD) - 6\\notebooks\\SFLLD_M8_11F_DTI_Missing_3models_controlled_fixed12Fparams\\importance\\catboost_no_harp_10F_fixed.pkl",
+  "train_path": "C:\\Users\\itwill\\Desktop\\study\\코딩공부\\프로젝트\\The Single Family Loan-Level Dataset (SFLLD) - 6\\data\\output\\model_ready\\SFLLD_regular_PIT_train_ML_ready.parquet",
+  "validation_path": "C:\\Users\\itwill\\Desktop\\study\\코딩공부\\프로젝트\\The Single Family Loan-Level Dataset (SFLLD) - 6\\data\\output\\model_ready\\SFLLD_regular_PIT_validation_ML_ready.parquet",
+  "random_state": 3217,
+  "internal_holdout_fraction": 0.2,
+  "cv_folds": 5,
+  "feature_order_saved_model": [
+    "FICO_Score",
+    "Original_DTI",
+    "Original_CLTV",
+    "Original_Interest_Rate",
+    "Number_of_Borrowers",
+    "Housing_HPI_Growth_12M",
+    "BLS_Unemployment_Rate_Change_12M_Final",
+    "DTI_Missing",
+    "Spatial_Cluster_Region",
+    "Regular_MSA_Macro_Cluster_A"
+  ],
+  "categorical": [
+    "DTI_Missing",
+    "Spatial_Cluster_Region",
+    "Regular_MSA_Macro_Cluster_A"
+  ],
+  "band_names": [
+    "Very High (top 5%)",
+    "High (next 15%)",
+    "Medium (next 30%)",
+    "Low (remaining 50%)"
+  ],
+  "band_shares": [
+    0.05,
+    0.15,
+    0.3,
+    0.5
+  ],
+  "OOF_numeric_cutoffs_diagnostic": [
+    0.02102437349380708,
+    0.0076956094906914276,
+    0.002638046800026032
+  ],
+  "validation_used_to_choose_cutoffs": false
+}
